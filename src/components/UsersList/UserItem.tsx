@@ -10,17 +10,25 @@ import {
   Typography,
 } from "@mui/material";
 import { pink } from "@mui/material/colors";
-import { UserData, UserListItem } from "../../types";
+import { FetchUserDataResult, UserListItem } from "../../types";
 import useFetchUserData from "../../customHooks";
 
 const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
-  const userData: UserData | null = useFetchUserData(user?.url);
-  console.log(userData, "userData");
+  const fetchedResults: FetchUserDataResult | null = useFetchUserData(
+    user?.login
+  );
+
+  if (!fetchedResults) return;
+
+  const { userDetails, loading } = fetchedResults;
+
+  if (loading) return <>Loading...</>;
+
   return (
     <Grid item xs={12} sm={5} md={5}>
       <ListItem
         component={Link}
-        to={`/${userData?.login}`}
+        to={`/${userDetails?.login}`}
         sx={{
           border: "1px solid #4b5563",
           padding: "1rem",
@@ -31,8 +39,8 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
       >
         <ListItemAvatar>
           <Avatar
-            src={userData?.avatar_url}
-            alt={userData?.login}
+            src={userDetails?.avatar_url}
+            alt={userDetails?.login}
             sx={{
               height: "80px",
               width: "80px",
@@ -40,8 +48,8 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
           />
         </ListItemAvatar>
         <ListItemText
-          primary={`${userData?.name}` ?? ""}
-          secondary={`${userData?.login ?? ""}`}
+          primary={`${userDetails?.name}` ?? ""}
+          secondary={`${userDetails?.login ?? ""}`}
           secondaryTypographyProps={{
             variant: "body2",
             color: "text.secondary",
@@ -53,7 +61,7 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
           color="textSecondary"
           sx={{ minWidth: "3rem" }}
         >
-          {userData?.location ?? "----"}
+          {userDetails?.location ?? "----"}
         </Typography>
       </ListItem>
     </Grid>

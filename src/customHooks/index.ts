@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
-import { UserData } from "../types";
+import { FetchUserDataResult, UserData } from "../types";
 import { getUserDetails } from "../api";
 
-const useFetchUserData = (url: string): UserData | null => {
+const useFetchUserData = (userId: string): FetchUserDataResult | null => {
   const [userDetails, setUserDetails] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const data = await getUserDetails(url);
+        const data = await getUserDetails(userId);
         setUserDetails(data);
       } catch (error) {
         console.error("Error fetching users data", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUsers();
-  }, [url]);
+  }, [userId]);
 
-  return userDetails;
+  return { userDetails, loading };
 };
 
 export default useFetchUserData;

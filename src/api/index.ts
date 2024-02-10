@@ -1,7 +1,13 @@
+const GITHUB_TOKEN = import.meta.env.VITE_APP_GITHUB_TOKEN as string;
 const fetchAllUsers = async () => {
   const apiURL = "https://api.github.com/users";
   try {
-    const response = await fetch(apiURL);
+    const response = await fetch(apiURL, {
+      headers: {
+        accept: "application/vnd.github+json",
+        authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -9,9 +15,15 @@ const fetchAllUsers = async () => {
   }
 };
 
-const getUserDetails = async (url: string) => {
+const getUserDetails = async (userId: string) => {
   try {
-    const response = await fetch(url);
+    const apiURl = `https://api.github.com/users/${userId}`;
+    const response = await fetch(apiURl, {
+      headers: {
+        accept: "application/vnd.github+json",
+        authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    });
     const data = await response.json();
     return data;
   } catch (error) {
