@@ -5,11 +5,13 @@ import { CssBaseline } from "@mui/material";
 import customTheme from "./theme";
 import UserListPage from "./components/UsersList/UserListPage";
 import UserDetailsPage from "./components/UserDetails/UserDetailsPage";
+import PageHeader from "./components/PageHeader/PageHeader";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
+      <PageHeader />
       <Router>
         <Routes>
           <Route path="/" element={<UserListPage />} />
