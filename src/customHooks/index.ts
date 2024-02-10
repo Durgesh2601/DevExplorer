@@ -7,6 +7,7 @@ const useFetchUserData = (userId: string): FetchUserDataResult | null => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!userId) return;
     const fetchUsers = async () => {
       try {
         const data = await getUserDetails(userId);

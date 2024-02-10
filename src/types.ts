@@ -16,6 +16,8 @@ interface UserData {
   followers: number;
   following: number;
   public_repos: number;
+  email: string;
+  twitter_username: string;
 }
 
 interface UserListItem {
