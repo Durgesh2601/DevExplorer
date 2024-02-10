@@ -18,8 +18,9 @@ import {
   HowToReg,
   MailOutline,
   X,
+  Business,
 } from "@mui/icons-material";
-import { blue, lightGreen, pink } from "@mui/material/colors";
+import { blue, lightGreen, pink, teal } from "@mui/material/colors";
 import useFetchUserData from "../../customHooks";
 import { FetchUserDataResult } from "../../types";
 
@@ -82,7 +83,7 @@ const UserDetailsPage: React.FC = () => {
             <Typography variant="h5" gutterBottom>
               {userDetails.name}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ color: blue[500] }}>
               {userDetails.login}
             </Typography>
             <Divider sx={{ marginBottom: "0.5rem" }} />
@@ -92,22 +93,40 @@ const UserDetailsPage: React.FC = () => {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Grid item xs={12} sm={5} md={5}>
-                <LocationOn sx={{ color: pink[500] }} />
+              <Grid item md={12}>
+                <Business sx={{ color: teal[500] }} />
                 <Typography
                   variant="body2"
                   component="span"
                   sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
                 >
-                  {userDetails.location || "--"}
+                  {userDetails.company}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={5} md={5}>
+                <LocationOn sx={{ color: pink[500] }} />
+                <Typography
+                  variant="body2"
+                  component="span"
+                  sx={{
+                    verticalAlign: "top",
+                    marginLeft: "0.5rem",
+                    color: pink[500],
+                  }}
+                >
+                  {userDetails.location || "--"}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={5} md={5} sx={{ cursor: "pointer" }}>
                 <MailOutline sx={{ color: blue[500] }} />
                 <Typography
                   variant="body2"
                   component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
+                  sx={{
+                    verticalAlign: "top",
+                    marginLeft: "0.5rem",
+                    color: blue[500],
+                  }}
                 >
                   {userDetails.email}
                 </Typography>
