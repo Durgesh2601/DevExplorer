@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  Avatar,
   Typography,
   Grid,
   Container,
@@ -10,41 +9,29 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import {
-  ArrowBack,
-  LocationOn,
-  PeopleAlt,
-  Visibility,
-  HowToReg,
-  MailOutline,
-  X,
-  Business,
-} from "@mui/icons-material";
-import { blue, lightGreen, pink, teal } from "@mui/material/colors";
+import { ArrowBack } from "@mui/icons-material";
+import ImageShimmer from "../Shimmer";
 import useFetchUserData from "../../customHooks";
 import { FetchUserDataResult } from "../../types";
+import UserDetailItem from "./UserDetaiItem";
+import userDetailIcons from "./userDetailsIcons";
+import { fullWidthKeys } from "../../constants";
 
 const UserDetailsPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
 
-  const fetchedResults: FetchUserDataResult | null = useFetchUserData(
-    username ?? ""
+  const { userDetails, loading }: FetchUserDataResult | null = useFetchUserData(
+    username || ""
   );
-
-  if (!fetchedResults) {
-    return <CircularProgress />;
-  }
-
-  const { userDetails, loading } = fetchedResults;
-
-  if (loading || !userDetails) {
-    return <CircularProgress />;
-  }
 
   const handleBack = () => {
     navigate(-1);
   };
+
+  if (loading || !userDetails) {
+    return <CircularProgress />;
+  }
 
   return (
     <Container
@@ -69,108 +56,41 @@ const UserDetailsPage: React.FC = () => {
         justifyContent="center"
       >
         <Grid item sx={{ marginBottom: "1rem" }}>
-          <Avatar
-            src={userDetails.avatar_url}
+          <ImageShimmer
+            width={180}
+            height={180}
+            imageUrl={userDetails.avatar_url}
             alt={userDetails.login}
-            sx={{ width: 180, height: 180 }}
           />
         </Grid>
-        <Grid item>
-          <Paper
-            variant="outlined"
-            style={{ padding: "1.3rem", maxWidth: "32rem" }}
-          >
+        <Grid item xs={12} sm={12} md={6}>
+          <Paper variant="outlined" style={{ padding: "1rem" }}>
             <Typography variant="h5" gutterBottom>
               {userDetails.name}
             </Typography>
-            <Typography variant="body1" gutterBottom sx={{ color: blue[500] }}>
+            <Typography variant="body1" gutterBottom>
               {userDetails.login}
             </Typography>
             <Divider sx={{ marginBottom: "0.5rem" }} />
             <Grid
               container
               spacing={1}
+              sx={{ minWidth: "25rem" }}
               justifyContent={"space-between"}
-              alignItems={"center"}
+              paddingLeft={1}
             >
-              <Grid item md={12}>
-                <Business sx={{ color: teal[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
-                >
-                  {userDetails.company}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5}>
-                <LocationOn sx={{ color: pink[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{
-                    verticalAlign: "top",
-                    marginLeft: "0.5rem",
-                    color: pink[500],
-                  }}
-                >
-                  {userDetails.location || "--"}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5} sx={{ cursor: "pointer" }}>
-                <MailOutline sx={{ color: blue[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{
-                    verticalAlign: "top",
-                    marginLeft: "0.5rem",
-                    color: blue[500],
-                  }}
-                >
-                  {userDetails.email}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5}>
-                <PeopleAlt sx={{ color: blue[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
-                >
-                  {userDetails.followers} followers
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5}>
-                <HowToReg sx={{ color: blue[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
-                >
-                  {userDetails.following} following
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5}>
-                <Visibility sx={{ color: lightGreen[500] }} />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
-                >
-                  {userDetails.public_repos} public repos
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={5} md={5}>
-                <X />
-                <Typography
-                  variant="body2"
-                  component="span"
-                  sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
-                >
-                  @{userDetails.twitter_username}
-                </Typography>
-              </Grid>
+              {Object.entries(userDetailIcons).map(
+                ([key, icon]) =>
+                  userDetails[key] && (
+                    <UserDetailItem
+                      key={key}
+                      label={key}
+                      value={userDetails[key]}
+                      icon={icon}
+                      fullwidth={fullWidthKeys.includes(key)}
+                    />
+                  )
+              )}
             </Grid>
           </Paper>
         </Grid>

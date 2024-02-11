@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {
-  Avatar,
   Grid,
   ListItem,
   ListItemAvatar,
@@ -12,6 +11,7 @@ import {
 import { pink } from "@mui/material/colors";
 import { FetchUserDataResult, UserListItem } from "../../types";
 import useFetchUserData from "../../customHooks";
+import ImageShimmer from "../Shimmer";
 
 const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
   const fetchedResults: FetchUserDataResult | null = useFetchUserData(
@@ -38,13 +38,11 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
         }}
       >
         <ListItemAvatar>
-          <Avatar
-            src={userDetails?.avatar_url}
-            alt={userDetails?.login}
-            sx={{
-              height: "80px",
-              width: "80px",
-            }}
+          <ImageShimmer
+            height={80}
+            width={80}
+            imageUrl={userDetails?.avatar_url ?? ""}
+            alt={userDetails?.login ?? ""}
           />
         </ListItemAvatar>
         <ListItemText

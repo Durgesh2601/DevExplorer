@@ -34,4 +34,30 @@ interface FetchUserDataResult {
   loading: boolean | false;
 }
 
-export type { UserData, UserList, UserListItem, FetchUserDataResult };
+interface ImageShimmerProps {
+  width: number;
+  height: number;
+  imageUrl: string;
+  alt: string;
+}
+
+interface UserDetailItemProps {
+  value: string;
+  icon: JSX.Element;
+  label: string;
+  fullwidth?: boolean;
+}
+
+interface UserDetailIcons {
+  [key: string]: JSX.Element;
+}
+
+export type {
+  UserData,
+  UserList,
+  UserListItem,
+  FetchUserDataResult,
+  ImageShimmerProps,
+  UserDetailItemProps,
+  UserDetailIcons,
+};
