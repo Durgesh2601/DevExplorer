@@ -18,7 +18,7 @@ const UserDetailItem: React.FC<UserDetailItemProps> = ({
         component="span"
         sx={{ verticalAlign: "top", marginLeft: "0.5rem" }}
       >
-        {value}{" "}
+        {value ?? "--"}{" "}
         {showExtraLabel &&
           extraLabelsKeysMap[label as keyof typeof extraLabelsKeysMap]}
       </Typography>
