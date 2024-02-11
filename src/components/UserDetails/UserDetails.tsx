@@ -82,17 +82,16 @@ const UserDetails: React.FC = () => {
               justifyContent={"space-between"}
               paddingLeft={1}
             >
-              {Object.entries(userDetailIcons).map(
-                ([key, icon]) =>
-                  userDetails[key] && (
-                    <UserDetailItem
-                      key={key}
-                      label={key}
-                      value={userDetails[key]}
-                      icon={icon}
-                      fullwidth={fullWidthKeys.includes(key)}
-                    />
-                  )
+              {Object.entries(userDetailIcons).map(([key, icon]) =>
+                userDetails[key] ? (
+                  <UserDetailItem
+                    key={key}
+                    label={key}
+                    value={userDetails[key]}
+                    icon={icon}
+                    fullwidth={fullWidthKeys.includes(key)}
+                  />
+                ) : null
               )}
             </Grid>
           </Paper>
