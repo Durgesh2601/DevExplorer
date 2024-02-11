@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 interface UserList {
   id: number;
   login: string;
@@ -58,6 +60,15 @@ interface UserDataContextType {
   setUserData: (userId: string, data: UserData) => void;
 }
 
+interface ErrorBoundaryProps {
+  children: ReactNode;
+  fallback: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
 export type {
   UserData,
   UserList,
@@ -67,4 +78,6 @@ export type {
   UserDetailItemProps,
   UserDetailIcons,
   UserDataContextType,
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
 };
