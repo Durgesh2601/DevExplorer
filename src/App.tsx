@@ -6,18 +6,21 @@ import customTheme from "./theme";
 import PageHeader from "./components/PageHeader/PageHeader";
 import HomePage from "./pages/Homepage";
 import UserDetailPage from "./pages/UserDetailPage";
+import { UserProvider } from "./context/UserDataContext";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <PageHeader />
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/:username" element={<UserDetailPage />} />
-        </Routes>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:username" element={<UserDetailPage />} />
+          </Routes>
+        </Router>
+      </UserProvider>
     </ThemeProvider>
   );
 };
