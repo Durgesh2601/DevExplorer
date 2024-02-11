@@ -46,6 +46,8 @@ To run the Dev Explorer application locally, follow these steps:
    VITE_APP_GITHUB_TOKEN=YOUR_GITHUB_TOKEN_HERE
    ```
 
+   Replace `YOUR_GITHUB_TOKEN_HERE` with your GitHub token.
+
 5. Install dependencies:
 
    ```bash
