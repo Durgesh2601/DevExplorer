@@ -43,7 +43,7 @@ To run the Dev Explorer application locally, follow these steps:
 4. Add the following environment variable to the `.env` file:
 
    ```plaintext
-   VITE_APP_GITHUB_TOKEN=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
+   VITE_APP_GITHUB_TOKEN=YOUR_GITHUB_TOKEN_HERE
    ```
 
 5. Install dependencies:
