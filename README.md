@@ -58,6 +58,12 @@ To run the Dev Explorer application locally, follow these steps:
 
 ## Tech Documentation
 
+### Error Boundary and Fallback Component
+
+An error boundary is implemented in the Dev Explorer application to catch JavaScript errors that occur during the rendering of React components. The `ErrorBoundary` component wraps the application's UI and provides a fallback UI in case of errors, ensuring that the application remains functional and user-friendly even when errors occur.
+
+The fallback component is an interactive screen displayed to users when an error is caught by the error boundary. It provides users with options to retry the operation or navigate to homepage. The fallback screen is built using Material-UI components, ensuring consistency with the rest of the application's design.
+
 ### Context API
 
 The Context API is used to manage global state in the application. It provides a way to pass data through the component tree without having to pass props down manually at every level. In this project, a context provider is used to cache developer data fetched from platforms like GitHub API, which improves performance by reducing the number of HTTP requests made.
@@ -77,6 +83,7 @@ React Router is a popular routing library for React applications. It allows for 
 ### Vite
 
 Vite is a fast, opinionated frontend build tool that provides lightning-fast hot module replacement (HMR) and instant server start. In this project, Vite is used as the build tool to compile and bundle the project's assets and dependencies for development and production environments.
+
 
 ## Deployment
 
