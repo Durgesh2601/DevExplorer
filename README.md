@@ -38,10 +38,6 @@ To run the Dev Explorer application locally, follow these steps:
 
 2. Navigate to the project directory:
 
-   ```bash
-   cd dev-explorer
-   ```
-
 3. Install dependencies:
 
    ```bash
