@@ -6,7 +6,7 @@ Dev Explorer is a web application that allows users to explore detailed informat
 
 ## Features
 
-- Search for developers by username
+- Users listing page
 - View detailed developer profile information
 - Navigate back to the previous page
 - Responsive design for various screen sizes
@@ -32,7 +32,7 @@ To run the Dev Explorer application locally, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Durgesh2601/DevExplorer.git>
    ```
 
 2. Navigate to the project directory:
@@ -80,11 +80,3 @@ Vite is a fast, opinionated frontend build tool that provides lightning-fast hot
 ## Deployment
 
 The Dev Explorer application is deployed on Vercel and is accessible online. You can view it [here](https://dev-explorer.vercel.app/).
-
-## Credits
-
-This project was created by [Your Name].
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
