@@ -17,13 +17,17 @@ import UserDetailItem from "./UserDetaiItem";
 import userDetailIcons from "./userDetailsIcons";
 import { fullWidthKeys } from "../../constants";
 
-const UserDetailsPage: React.FC = () => {
+const UserDetails: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
 
-  const { userDetails, loading }: FetchUserDataResult | null = useFetchUserData(
+  const fetchedResults: FetchUserDataResult | null = useFetchUserData(
     username || ""
   );
+
+  if (!fetchedResults) return;
+
+  const { userDetails, loading } = fetchedResults;
 
   const handleBack = () => {
     navigate(-1);
@@ -99,4 +103,4 @@ const UserDetailsPage: React.FC = () => {
   );
 };
 
-export default UserDetailsPage;
+export default UserDetails;

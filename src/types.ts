@@ -18,6 +18,7 @@ interface UserData {
   public_repos: number;
   email: string;
   twitter_username: string;
+  [key: string]: string | number | undefined;
 }
 
 interface UserListItem {
@@ -42,7 +43,7 @@ interface ImageShimmerProps {
 }
 
 interface UserDetailItemProps {
-  value: string;
+  value?: string | number;
   icon: JSX.Element;
   label: string;
   fullwidth?: boolean;
