@@ -2,11 +2,12 @@
 
 ## Overview
 
-Dev Explorer is a web application that allows users to explore detailed information about developers on platforms like GitHub. Users can search for a specific developer by username and view their profile details, including their name, avatar, company, location, email, followers, following, public repositories, and Twitter username.
+Dev Explorer is a web application that allows users to explore detailed information about developers on platforms like GitHub. Users can view developers' profile details, including their name, avatar, company, location, email, followers, following, public repositories, and Twitter username.
+
 
 ## Features
 
-- Users listing page
+- Developers listing page
 - View detailed developer profile information
 - Navigate back to the previous page
 - Responsive design for various screen sizes
@@ -32,7 +33,7 @@ To run the Dev Explorer application locally, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <https://github.com/Durgesh2601/DevExplorer.git>
+   git clone https://github.com/Durgesh2601/DevExplorer.git
    ```
 
 2. Navigate to the project directory:
