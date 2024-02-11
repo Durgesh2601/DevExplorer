@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FetchUserDataResult, UserData } from "../types";
+import { FetchUserDataResult } from "../types";
 import { getUserDetails } from "../api";
 import { useUserContext } from "../context/UserDataContext";
 
@@ -31,8 +31,8 @@ const useFetchUserData = (userId: string): FetchUserDataResult | null => {
     };
 
     fetchData();
-  }, [userId, setUserData, userData]); // Add userData to dependencies
-
+  }, [userId, setUserData, userData]);
+  
   return { userDetails: userData[userId] || null, loading };
 };
 
