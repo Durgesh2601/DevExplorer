@@ -4,7 +4,6 @@ import {
   Typography,
   Grid,
   Container,
-  CircularProgress,
   Paper,
   IconButton,
   Divider,
@@ -12,10 +11,11 @@ import {
 import { ArrowBack } from "@mui/icons-material";
 import ImageShimmer from "../Shimmer";
 import useFetchUserData from "../../customHooks";
-import { FetchUserDataResult } from "../../types";
 import UserDetailItem from "./UserDetaiItem";
 import userDetailIcons from "./userDetailsIcons";
 import { fullWidthKeys } from "../../constants";
+import UserDetailsLoading from "../LoadingScreens/UserDetailsLoading";
+import { FetchUserDataResult } from "../../types";
 
 const UserDetails: React.FC = () => {
   const { username } = useParams<{ username: string }>();
@@ -34,7 +34,7 @@ const UserDetails: React.FC = () => {
   };
 
   if (loading || !userDetails) {
-    return <CircularProgress />;
+    return <UserDetailsLoading />;
   }
 
   return (
@@ -67,8 +67,12 @@ const UserDetails: React.FC = () => {
             alt={userDetails.login}
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <Paper variant="outlined" style={{ padding: "1rem" }}>
+        <Grid container xs={12} sm={12} md={8} justifyContent={'center'}>
+          <Paper
+            variant="outlined"
+            sx={{ padding: "1rem" }}
+            elevation={3}
+          >
             <Typography variant="h5" gutterBottom>
               {userDetails.name}
             </Typography>
@@ -79,7 +83,6 @@ const UserDetails: React.FC = () => {
             <Grid
               container
               spacing={1}
-              sx={{ minWidth: "25rem" }}
               justifyContent={"space-between"}
               paddingLeft={1}
             >

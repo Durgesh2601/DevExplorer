@@ -12,6 +12,7 @@ import { pink } from "@mui/material/colors";
 import { FetchUserDataResult, UserListItem } from "../../types";
 import useFetchUserData from "../../customHooks";
 import ImageShimmer from "../Shimmer";
+import UserListLoading from "../LoadingScreens/UserListingLoading";
 
 const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
   const fetchedResults: FetchUserDataResult | null = useFetchUserData(
@@ -21,8 +22,6 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
   if (!fetchedResults) return;
 
   const { userDetails, loading } = fetchedResults;
-
-  if (loading) return <>Loading...</>;
 
   return (
     <Grid item xs={12} sm={5} md={5}>
@@ -37,30 +36,36 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
           color: "inherit",
         }}
       >
-        <ListItemAvatar>
-          <ImageShimmer
-            height={80}
-            width={80}
-            imageUrl={userDetails?.avatar_url ?? ""}
-            alt={userDetails?.login ?? ""}
-          />
-        </ListItemAvatar>
-        <ListItemText
-          primary={`${userDetails?.name}` ?? ""}
-          secondary={`${userDetails?.login ?? ""}`}
-          secondaryTypographyProps={{
-            variant: "body2",
-            color: "text.secondary",
-          }}
-        />
-        <LocationOnIcon sx={{ color: pink[500] }} />
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{ minWidth: "3rem" }}
-        >
-          {userDetails?.location ?? "----"}
-        </Typography>
+        {loading ? (
+          <UserListLoading />
+        ) : (
+          <>
+            <ListItemAvatar>
+              <ImageShimmer
+                height={80}
+                width={80}
+                imageUrl={userDetails?.avatar_url ?? ""}
+                alt={userDetails?.login ?? ""}
+              />
+            </ListItemAvatar>
+            <ListItemText
+              primary={`${userDetails?.name}` ?? ""}
+              secondary={`${userDetails?.login ?? ""}`}
+              secondaryTypographyProps={{
+                variant: "body2",
+                color: "text.secondary",
+              }}
+            />
+            <LocationOnIcon sx={{ color: pink[500] }} />
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              sx={{ minWidth: "3rem" }}
+            >
+              {userDetails?.location ?? "----"}
+            </Typography>
+          </>
+        )}
       </ListItem>
     </Grid>
   );
