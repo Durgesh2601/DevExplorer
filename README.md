@@ -38,19 +38,27 @@ To run the Dev Explorer application locally, follow these steps:
 
 2. Navigate to the project directory:
 
-3. Install dependencies:
+3. Create a `.env` file in the root directory of the project.
+
+4. Add the following environment variable to the `.env` file:
+
+   ```plaintext
+   VITE_APP_GITHUB_TOKEN=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
+   ```
+
+5. Install dependencies:
 
    ```bash
    npm install
    ```
 
-4. Start the development server:
+6. Start the development server:
 
    ```bash
    npm run dev
    ```
 
-5. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+7. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Tech Documentation
 
@@ -58,7 +66,7 @@ To run the Dev Explorer application locally, follow these steps:
 
 An error boundary is implemented in the Dev Explorer application to catch JavaScript errors that occur during the rendering of React components. The `ErrorBoundary` component wraps the application's UI and provides a fallback UI in case of errors, ensuring that the application remains functional and user-friendly even when errors occur.
 
-The fallback component is an interactive screen displayed to users when an error is caught by the error boundary. It provides users with options to retry the operation or navigate to homepage. The fallback screen is built using Material-UI components, ensuring consistency with the rest of the application's design.
+The fallback component is an interactive screen displayed to users when an error is caught by the error boundary. It provides users with options to retry the operation or navigate to the homepage. The fallback screen is built using Material-UI components, ensuring consistency with the rest of the application's design.
 
 ### Context API
 
@@ -84,3 +92,4 @@ Vite is a fast, opinionated frontend build tool that provides lightning-fast hot
 ## Deployment
 
 The Dev Explorer application is deployed on Vercel and is accessible online. You can view it [here](https://dev-explorer.vercel.app/).
+ 
