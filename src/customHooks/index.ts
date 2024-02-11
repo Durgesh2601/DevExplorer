@@ -1,28 +1,39 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FetchUserDataResult, UserData } from "../types";
 import { getUserDetails } from "../api";
+import { useUserContext } from "../context/UserDataContext";
 
 const useFetchUserData = (userId: string): FetchUserDataResult | null => {
-  const [userDetails, setUserDetails] = useState<UserData | null>(null);
+  const { userData, setUserData } = useUserContext();
+
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!userId) return;
-    const fetchUsers = async () => {
+
+    const fetchData = async () => {
+      setLoading(true);
+
       try {
+        // Check if data exists in context
+        if (userData[userId]) {
+          setLoading(false);
+          return;
+        }
+
         const data = await getUserDetails(userId);
-        setUserDetails(data);
+        setUserData(userId, data);
       } catch (error) {
-        console.error("Error fetching users data", error);
+        console.error("Error fetching user data", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUsers();
-  }, [userId]);
+    fetchData();
+  }, [userId, setUserData, userData]); // Add userData to dependencies
 
-  return { userDetails, loading };
+  return { userDetails: userData[userId] || null, loading };
 };
 
 export default useFetchUserData;

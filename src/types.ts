@@ -53,6 +53,11 @@ interface UserDetailIcons {
   [key: string]: JSX.Element;
 }
 
+interface UserDataContextType {
+  userData: Record<string, UserData>;
+  setUserData: (userId: string, data: UserData) => void;
+}
+
 export type {
   UserData,
   UserList,
@@ -61,4 +66,5 @@ export type {
   ImageShimmerProps,
   UserDetailItemProps,
   UserDetailIcons,
+  UserDataContextType,
 };
