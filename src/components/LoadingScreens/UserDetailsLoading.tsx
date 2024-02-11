@@ -25,7 +25,7 @@ const UserDetailsLoading = () => {
         </Grid>
 
         {/* User Name and Login Skeleton */}
-        <Grid container xs={12} sm={12} md={8} justifyContent={"center"}>
+        <Grid item xs={12} sm={12} md={8} justifyContent={"center"}>
           <Paper
             variant="outlined"
             style={{ padding: "1rem", minWidth: "20rem" }}

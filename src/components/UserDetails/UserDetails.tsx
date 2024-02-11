@@ -67,12 +67,8 @@ const UserDetails: React.FC = () => {
             alt={userDetails.login}
           />
         </Grid>
-        <Grid container xs={12} sm={12} md={8} justifyContent={'center'}>
-          <Paper
-            variant="outlined"
-            sx={{ padding: "1rem" }}
-            elevation={3}
-          >
+        <Grid item xs={12} sm={12} md={8} justifyContent={"center"}>
+          <Paper variant="outlined" sx={{ padding: "1rem" }}>
             <Typography variant="h5" gutterBottom>
               {userDetails.name}
             </Typography>
