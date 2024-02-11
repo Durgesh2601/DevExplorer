@@ -9,6 +9,7 @@ import {
   Divider,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import { blue } from "@mui/material/colors";
 import ImageShimmer from "../Shimmer";
 import useFetchUserData from "../../customHooks";
 import UserDetailItem from "./UserDetaiItem";
@@ -68,11 +69,11 @@ const UserDetails: React.FC = () => {
           />
         </Grid>
         <Grid item xs={12} sm={12} md={8} justifyContent={"center"}>
-          <Paper variant="outlined" sx={{ padding: "1rem" }}>
+          <Paper variant="outlined" sx={{ padding: "1.5rem" }}>
             <Typography variant="h5" gutterBottom>
               {userDetails.name}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom color={blue[500]}>
               {userDetails.login}
             </Typography>
             <Divider sx={{ marginBottom: "0.5rem" }} />
