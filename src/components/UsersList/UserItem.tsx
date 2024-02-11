@@ -8,7 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { pink } from "@mui/material/colors";
+import { blue, pink } from "@mui/material/colors";
 import { FetchUserDataResult, UserListItem } from "../../types";
 import useFetchUserData from "../../customHooks";
 import ImageShimmer from "../Shimmer";
@@ -53,7 +53,7 @@ const UserItem: React.FC<{ user: UserListItem }> = ({ user }) => {
               secondary={`${userDetails?.login ?? ""}`}
               secondaryTypographyProps={{
                 variant: "body2",
-                color: "text.secondary",
+                color: blue[500],
               }}
             />
             <LocationOnIcon sx={{ color: pink[500] }} />
